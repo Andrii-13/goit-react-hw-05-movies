@@ -2,12 +2,14 @@ import { Container } from 'components/Container/Container.styled';
 import { Section } from 'components/Section/Section.styled';
 import React from 'react';
 
-const Movies = () => {
+const NotFound = () => {
   return (
-    <Section>
-      <Container> Movies</Container>
-    </Section>
+    <main>
+      <Section>
+        <Container>NotFound</Container>
+      </Section>
+    </main>
   );
 };
 
-export default Movies;
+export default NotFound;
