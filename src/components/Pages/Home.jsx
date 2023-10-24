@@ -1,6 +1,6 @@
 import { Container } from 'components/Container/Container.styled';
 import { Section } from 'components/Section/Section.styled';
-import getFetch from 'components/js/api';
+// import getFetch from 'components/js/api';
 import React from 'react';
 
 const Home = () => {
