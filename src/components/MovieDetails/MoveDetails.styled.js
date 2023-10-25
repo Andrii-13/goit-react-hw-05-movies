@@ -18,6 +18,8 @@ width: 400px;
 img{
     width: 100%;
 }
+
+
 `
 
 export const InfoWrap = styled.div`

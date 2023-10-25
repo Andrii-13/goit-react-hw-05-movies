@@ -1,34 +1,18 @@
+import React from 'react'
 import { Container } from 'components/Container/Container.styled';
-import PageMove from 'components/PageMove/PageMove';
 import { Section } from 'components/Section/Section.styled';
-import getFilmInfo from 'js/apiFilm';
-import { useEffect, useState } from 'react';
+import MoveDetails from 'components/MovieDetails/MoveDetails';
 
-const Movies = ({ id }) => {
-  const [move, setMove] = useState({});
-
-  useEffect(() => {
-    try {
-      if (!id) {
-        return;
-      }
-      const getFilm = async () => {
-        const { data } = await getFilmInfo(id);
-        setMove(data);
-        return data;
-      };
-      getFilm(id);
-    } catch (error) {}
-  }, [id]);
-
+const Movies = () => {
   return (
     <main>
       <Section>
         <Container>
-          <PageMove film={move} />
+          <form>Form for film</form>
+          <MoveDetails/>
         </Container>
       </Section>
-    </main>
+   </main>
   );
 };
 
