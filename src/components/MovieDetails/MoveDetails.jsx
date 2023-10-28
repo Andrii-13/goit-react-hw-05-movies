@@ -6,8 +6,8 @@ import getFilmInfo from 'js/apiFilm';
 import { useEffect } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import { Section } from 'components/Section/Section.styled';
-import Reviews from 'components/Reviews/Reviews';
-import Cast from 'components/Cast/Cast';
+import CastLink from 'components/CastLink/CastLink';
+import ReviewsLink from 'components/ReviewsLink/ReviewsLink';
 
 const MoveDetails = () => {
   const moveId = useParams();
@@ -30,7 +30,7 @@ const MoveDetails = () => {
       };
       getFilm(id);
     } catch (error) {}
-  }, []);
+  }, [film, id]);
 
   const urlPoster = refs.POSTER_URL + poster_path;
 
@@ -67,8 +67,8 @@ const MoveDetails = () => {
           </FilmPageWrap>
           <h3>Additional information</h3>
           <ul>
-            <Cast />
-            <Reviews />
+            <CastLink />
+            <ReviewsLink />
           </ul>
           <Outlet />
         </Container>
