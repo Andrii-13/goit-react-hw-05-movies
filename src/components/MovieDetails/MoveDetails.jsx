@@ -42,7 +42,7 @@ const MoveDetails = () => {
             <button type="bytton">Go Back</button>
             <InfoWrap>
               <ImgWrap>
-                <img src={urlPoster} alt="films poster" />
+                <img src={urlPoster} alt="films poster" width={400} />
               </ImgWrap>
               <div>
                 <h1>{title}</h1>

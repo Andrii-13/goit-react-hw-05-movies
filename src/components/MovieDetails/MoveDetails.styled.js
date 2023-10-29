@@ -16,7 +16,7 @@ export const ImgWrap = styled.div`
 width: 400px;
 
 img{
-    width: 100%;
+    min-width: 100%;
 }
 
 
