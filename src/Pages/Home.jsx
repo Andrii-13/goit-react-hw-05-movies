@@ -27,7 +27,7 @@ const Home = () => {
     <main>
       <Section>
         <Container>
-          <h1>Trending this week</h1>
+          <h1 style={{textAlign:'center', color:'gray'}} >Trending this week</h1>
           {movies.length > 0 && (
             <ListMovies trendMovies={movies}/>
           )}

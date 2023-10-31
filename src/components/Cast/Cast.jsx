@@ -2,6 +2,7 @@ import getFilmCast from 'js/apiCast';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { ActorInfoWrap, CastList, PhotoWrap } from './Cast.styled';
+import defaultPhoto from '../../img/bart.jpg';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -10,16 +11,17 @@ const Cast = () => {
   const id = moviesId.moviesId;
 
   useEffect(() => {
-    const getCast = async () => {
-      const {
-        data: { cast },
-      } = await getFilmCast(id);
-      setCast(cast);
-    };
+    try {
+      const getCast = async () => {
+        const {
+          data: { cast },
+        } = await getFilmCast(id);
+        setCast(cast);
+      };
 
-    getCast(id);
+      getCast(id);
+    } catch (error) {}
   }, [id]);
-  console.log(cast);
 
   return (
     <CastList>
@@ -28,9 +30,9 @@ const Cast = () => {
           <li key={id}>
             <PhotoWrap>
               <img
-                src={'https://image.tmdb.org/t/p/w500' + profile_path}
-                alt="photo actor"
-                width={200}
+                src={profile_path ? 'https://image.tmdb.org/t/p/w500' + profile_path : defaultPhoto}
+                alt="actor"
+                width={150}
               />
             </PhotoWrap>
             <ActorInfoWrap>

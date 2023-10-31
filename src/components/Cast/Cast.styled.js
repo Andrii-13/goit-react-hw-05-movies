@@ -4,7 +4,8 @@ export const CastList = styled.ul`
 display: flex;
 list-style: none;
 flex-wrap: wrap;
-gap: 25px;
+gap: 10px;
+padding: 0;
 `
 
 export const PhotoWrap = styled.div`
@@ -18,5 +19,5 @@ img{
 }
 `
 export const ActorInfoWrap = styled.div`
-width: 200px;
+width: 150px;
 `

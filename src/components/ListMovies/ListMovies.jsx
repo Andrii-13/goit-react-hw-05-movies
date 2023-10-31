@@ -1,20 +1,15 @@
 import React from 'react';
-import { ListNameMovies } from './ListMovies.styled';
-import { Link} from 'react-router-dom';
+import FilmItem from 'components/FilmItem/FilmItem';
 
-const ListMovies = ({trendMovies}) => {
-  const styleLink = ({ 
+const ListMovies = ({ trendMovies }) => {
+  const styleLink = {
     textDecoration: 'none',
     color: 'black',
-   
-  });
-
+  };
  
-  return <ListNameMovies>{trendMovies.map(({id,title})=>{
-    return(
-        <li key={id}><Link style={styleLink} to={`/movies/${id}`}>{title}</Link></li>
-    )
-  })}</ListNameMovies>;
+  return (
+ <FilmItem films= {trendMovies}/>
+  );
 };
 
 export default ListMovies;
