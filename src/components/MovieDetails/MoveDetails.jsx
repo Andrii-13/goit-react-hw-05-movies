@@ -32,7 +32,7 @@ const MoveDetails = () => {
   console.log(backLinkLocationRef);
 
   useEffect(() => {
-    try {
+     try {
       const getFilm = async () => {
         const { data } = await getFilmInfo(id);
         setFilm(data);
@@ -40,7 +40,7 @@ const MoveDetails = () => {
       };
       getFilm(id);
     } catch (error) {}
-  }, []);
+  }, [id]);
 
   const urlPoster = refs.POSTER_URL + poster_path;
 

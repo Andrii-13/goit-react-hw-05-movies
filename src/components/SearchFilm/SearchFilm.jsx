@@ -1,11 +1,14 @@
-import { Formik, Form, ErrorMessage } from 'formik';
+import { Formik, Form
+  // , ErrorMessage 
+} from 'formik';
 import { Input, SearchButton } from './SearchFilm.styled';
-import { object, string } from 'yup';
+// import { object, string } from 'yup';
 import getFilmQuery from 'js/apiQuery';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import {
+  //  useLocation,
+    useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import FilmItem from 'components/FilmItem/FilmItem';
-
 
 // const userSchema = object({
 //   film: string().min(5).required().lowercase().trim(),
@@ -15,7 +18,7 @@ const SearchFilm = () => {
   const [films, setFilms] = useState();
   const [params, setParams] = useSearchParams();
 
-const location = useLocation();
+  // const location = useLocation();
 
   const initialValue = {
     film: '',
@@ -27,18 +30,18 @@ const location = useLocation();
   };
 
   useEffect(() => {
-    const filmQuery = params.get('film');
-   
-    const getMoveQuery = async () => {
-      const {
-        data: { results },
-      } = await getFilmQuery(filmQuery);
-      setFilms(results);
-    };
-    getMoveQuery(filmQuery);
-    if (!films) {
-      return;
-    }
+    try {
+      const filmQuery = params.get('film');
+
+      const getMoveQuery = async () => {
+        const {
+          data: { results },
+        } = await getFilmQuery(filmQuery);
+        setFilms(results);
+      };
+      getMoveQuery(filmQuery);
+     
+    } catch (error) {}
   }, [params]);
 
   return (
@@ -54,7 +57,7 @@ const location = useLocation();
           {/* <ErrorMessage name="film" component="div" /> */}
         </Form>
       </Formik>
-      {films && <FilmItem films= {films}/>}
+      {films && <FilmItem films={films} />}
     </div>
   );
 };
