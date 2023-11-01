@@ -1,5 +1,5 @@
 import React from 'react'
-import { AddInfoList } from '../MovieDetails/MoveDetails.styled'
+import { AddInfoList } from '../../Pages/MovieDetails/MoveDetails.styled'
 import CastLink from 'components/CastLink/CastLink'
 import ReviewsLink from 'components/ReviewsLink/ReviewsLink'
 import { AdditInformWrap } from './AdditInform.styled'

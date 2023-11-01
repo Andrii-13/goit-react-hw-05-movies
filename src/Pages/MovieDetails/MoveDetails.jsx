@@ -14,7 +14,8 @@ import { Container } from 'components/Container/Container.styled';
 import { Section } from 'components/Section/Section.styled';
 import defaultPhoto from '../../img/bart.jpg';
 import { Loader } from 'components/Loader/loader';
-import AdditInform from '../AdditInform/AdditInform';
+import AdditInform from '../../components/AdditInform/AdditInform';
+import ErrMessage from 'components/ErrMessage/ErrMessage';
 
 const MoveDetails = () => {
   const [loader, setLoader] = useState(false);
@@ -58,7 +59,7 @@ const MoveDetails = () => {
     <main>
       <Section>
         {loader && <Loader />}
-        {error && <div>Error, Please reload this page!</div>}
+        {error && <ErrMessage/>}
         {poster_path && (
           <Container>
             <FilmPageWrap>

@@ -13,6 +13,7 @@ import {
 import { useEffect, useState } from 'react';
 import FilmItem from 'components/FilmItem/FilmItem';
 import { Loader } from 'components/Loader/loader';
+import ErrMessage from 'components/ErrMessage/ErrMessage';
 
 // const userSchema = object({
 //   film: string().min(5).required().lowercase().trim(),
@@ -58,7 +59,7 @@ const SearchFilm = () => {
   return (
     <div>
       {loader && <Loader />}
-      {error && <div>Error, Please reload this page!</div>}
+      {error && <ErrMessage/>}
       <Formik
         initialValues={initialValue}
         onSubmit={handleSubmit}

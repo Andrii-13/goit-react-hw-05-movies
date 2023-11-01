@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import defaultPhoto from '../../img/bart.jpg';
 import { ReviewsList } from './Reviews.styled';
 import { Loader } from 'components/Loader/loader';
+import ErrMessage from 'components/ErrMessage/ErrMessage';
 
 const Reviews = () => {
   const [loader, setLoader] = useState(false);
@@ -36,7 +37,7 @@ const Reviews = () => {
   return (
     <ReviewsList>
        {loader && <Loader />}
-       {error && <div>Error, Please reload this page!</div>}
+       {error && <ErrMessage/>}
       {reviews &&
         reviews.map(
           ({
