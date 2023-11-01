@@ -11,21 +11,21 @@ const Home = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    try {
-      setLoader(true);
-      setError(false);
-      const trendMovies = async () => {
+    const trendMovies = async () => {
+      try {
+        setLoader(true);
+        setError(false);
         const {
           data: { results },
         } = await getFetch();
         setMovies(results);
-      };
-      trendMovies();
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoader(false);
-    }
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    };
+    trendMovies();
   }, []);
 
   return (

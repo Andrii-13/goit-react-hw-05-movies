@@ -15,46 +15,55 @@ import { Section } from 'components/Section/Section.styled';
 import CastLink from 'components/CastLink/CastLink';
 import ReviewsLink from 'components/ReviewsLink/ReviewsLink';
 import defaultPhoto from '../../img/bart.jpg';
-import { SearchButton } from 'components/SearchFilm/SearchFilm.styled';
+import { Loader } from 'components/Loader/loader';
 
 const MoveDetails = () => {
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const moveId = useParams();
-
-  const [film, setFilm] = useState(moveId);
-
   const id = moveId.moviesId;
+  const [film, setFilm] = useState(moveId);
 
   const { poster_path, title, vote_average, overview, genres = [] } = film;
 
   const location = useLocation();
-  const backLinkLocationRef = useRef(location.state?.from ?? '/');
-  console.log(location);
-  console.log(backLinkLocationRef);
+  const backLinkLocationRef = useRef(location.state ?? '/');
+
+  // не можу зрозуміти чому в такому варіанті який пропонується не хоче працювати!!!
+
+  //   const backLinkLocationRef = useRef(location.state?.from ?? '/');
+
+  // показує underfind і викидає на головну сторінку
+
+  // console.log(backLinkLocationRef);
 
   useEffect(() => {
-     try {
-      const getFilm = async () => {
+    const getFilm = async () => {
+      try {
+        setLoader(true);
+        setError(false);
         const { data } = await getFilmInfo(id);
         setFilm(data);
-        return data;
-      };
-      getFilm(id);
-    } catch (error) {}
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    };
+    getFilm(id);
   }, [id]);
 
   const urlPoster = refs.POSTER_URL + poster_path;
 
-  // console.log(id);
-
   return (
     <main>
       <Section>
-        {id && (
+        {loader && <Loader />}
+        {error && <div>Error, Please reload this page!</div>}
+        {poster_path && (
           <Container>
             <FilmPageWrap>
-              <Link to={backLinkLocationRef.current}>
-                <SearchButton type="bytton">Go Back</SearchButton>
-              </Link>
+              <Link to={backLinkLocationRef.current}>Go Back</Link>
               <InfoWrap>
                 <ImgWrap>
                   <img
@@ -67,7 +76,7 @@ const MoveDetails = () => {
                   <h1>{title}</h1>
                   <div>
                     <h2>User Score:</h2>
-                    <p> {vote_average * 10}%</p>
+                    <p> {Math.ceil(vote_average * 10)}%</p>
                   </div>
                   <div>
                     <h2>Overview:</h2>

@@ -1,20 +1,26 @@
-import { Formik, Form
-  // , ErrorMessage 
+import {
+  Formik,
+  Form,
+  // , ErrorMessage
 } from 'formik';
 import { Input, SearchButton } from './SearchFilm.styled';
 // import { object, string } from 'yup';
 import getFilmQuery from 'js/apiQuery';
 import {
   //  useLocation,
-    useSearchParams } from 'react-router-dom';
+  useSearchParams,
+} from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import FilmItem from 'components/FilmItem/FilmItem';
+import { Loader } from 'components/Loader/loader';
 
 // const userSchema = object({
 //   film: string().min(5).required().lowercase().trim(),
 // });
 
 const SearchFilm = () => {
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const [films, setFilms] = useState();
   const [params, setParams] = useSearchParams();
 
@@ -30,22 +36,29 @@ const SearchFilm = () => {
   };
 
   useEffect(() => {
-    try {
-      const filmQuery = params.get('film');
+    const filmQuery = params.get('film');
 
-      const getMoveQuery = async () => {
+    const getMoveQuery = async () => {
+      try {
+        setLoader(true);
+        setError(false);
         const {
           data: { results },
         } = await getFilmQuery(filmQuery);
         setFilms(results);
-      };
-      getMoveQuery(filmQuery);
-     
-    } catch (error) {}
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    };
+    getMoveQuery(filmQuery);
   }, [params]);
 
   return (
     <div>
+      {loader && <Loader />}
+      {error && <div>Error, Please reload this page!</div>}
       <Formik
         initialValues={initialValue}
         onSubmit={handleSubmit}

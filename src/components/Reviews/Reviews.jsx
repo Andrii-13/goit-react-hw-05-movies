@@ -2,32 +2,41 @@ import getFilmReviews from 'js/apiReviews';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import defaultPhoto from '../../img/bart.jpg';
+import { ReviewsList } from './Reviews.styled';
+import { Loader } from 'components/Loader/loader';
 
 const Reviews = () => {
+  const [loader, setLoader] = useState(false);
+  const [error, setError] = useState(false);
   const [reviews, setReviews] = useState();
 
   const moviesId = useParams();
   const id = moviesId.moviesId;
 
   useEffect(() => {
-    try {
-      const getReviews = async () => {
+    const getReviews = async () => {
+      try {
+        setLoader(true);
+        setError(false);
         const {
           data: { results },
         } = await getFilmReviews(id);
         setReviews(results);
-      };
-      getReviews(id);
-    } catch (error) {}
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoader(false);
+      }
+    };
+    getReviews(id);
   }, [id]);
 
-  // if (reviews.length < 1) {
-  //   return;
-  // }
-  console.log(reviews);
+  // console.log(reviews);
 
   return (
-    <ul>
+    <ReviewsList>
+       {loader && <Loader />}
+       {error && <div>Error, Please reload this page!</div>}
       {reviews &&
         reviews.map(
           ({
@@ -41,7 +50,11 @@ const Reviews = () => {
               <li key={id}>
                 <div>
                   <img
-                    src={avatar_path ? 'https://image.tmdb.org/t/p/w500' + avatar_path : defaultPhoto}
+                    src={
+                      avatar_path
+                        ? 'https://image.tmdb.org/t/p/w500' + avatar_path
+                        : defaultPhoto
+                    }
                     alt="author avatar"
                     width={100}
                   ></img>
@@ -56,7 +69,7 @@ const Reviews = () => {
           }
         )}
       {reviews && reviews.length === 0 && <li>There is no comment.</li>}
-    </ul>
+    </ReviewsList>
   );
 };
 
