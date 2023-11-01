@@ -34,9 +34,30 @@ export const InfoWrap = styled.div`
 `;
 
 export const AddInfoList = styled.ul`
-display: flex;
-gap: 20px;
+  display: flex;
+  gap: 20px;
   list-style: none;
   font-size: 20px;
-  padding: 10px
+  padding: 10px;
+`;
+
+export const BackLink = styled.p`
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border: 1px solid #cecece;
+  background: #f6f6f6;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  width: max-content;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(204, 203, 203);
+  }
+
+  &:active {
+    background-color: rgb(179, 179, 179);
+  }
 `;

@@ -1,6 +1,7 @@
-import React, { useRef, useState } from 'react';
+import React, { Suspense, useRef, useState } from 'react';
 import {
   AddInfoList,
+  BackLink,
   FilmPageWrap,
   Genres,
   ImgWrap,
@@ -63,7 +64,9 @@ const MoveDetails = () => {
         {poster_path && (
           <Container>
             <FilmPageWrap>
-              <Link to={backLinkLocationRef.current}>Go Back</Link>
+              <Link to={backLinkLocationRef.current}>
+                <BackLink>Go Back</BackLink>
+              </Link>
               <InfoWrap>
                 <ImgWrap>
                   <img
@@ -98,7 +101,9 @@ const MoveDetails = () => {
               <CastLink />
               <ReviewsLink />
             </AddInfoList>
-            <Outlet />
+            <Suspense>
+              <Outlet />
+            </Suspense>
           </Container>
         )}
       </Section>
