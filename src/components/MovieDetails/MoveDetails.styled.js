@@ -50,6 +50,7 @@ export const BackLink = styled.p`
   background: #f6f6f6;
   border-radius: 8px;
   margin-bottom: 10px;
+  margin-top: 40px;
   width: max-content;
 
   &:hover {

@@ -1,10 +1,11 @@
 import { Hourglass } from  'react-loader-spinner'
+import { LoadMessage, LoaderWrap } from './loader.styled';
 
 
 export const Loader = () => {
     return (
-      <div >
-        <div>Loading...</div>
+      <LoaderWrap >
+        <LoadMessage>Loading...</LoadMessage>
         <Hourglass
           visible={true}
           height="50"
@@ -14,6 +15,6 @@ export const Loader = () => {
           wrapperClass=""
           colors={['#306cce', '#72a1ed']} 
         />
-      </div>
+      </LoaderWrap>
     );
   };

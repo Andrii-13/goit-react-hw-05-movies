@@ -17,6 +17,7 @@ export const SearchButton = styled.button`
   border: 1px solid #cecece;
   background: #f6f6f6;
   border-radius: 8px;
+  margin-top: 40px;
 
   &:hover {
     cursor: pointer;

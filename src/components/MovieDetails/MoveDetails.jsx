@@ -1,6 +1,5 @@
 import React, { Suspense, useRef, useState } from 'react';
 import {
-  AddInfoList,
   BackLink,
   FilmPageWrap,
   Genres,
@@ -13,10 +12,9 @@ import getFilmInfo from 'js/apiFilm';
 import { useEffect } from 'react';
 import { Container } from 'components/Container/Container.styled';
 import { Section } from 'components/Section/Section.styled';
-import CastLink from 'components/CastLink/CastLink';
-import ReviewsLink from 'components/ReviewsLink/ReviewsLink';
 import defaultPhoto from '../../img/bart.jpg';
 import { Loader } from 'components/Loader/loader';
+import AdditInform from '../AdditInform/AdditInform';
 
 const MoveDetails = () => {
   const [loader, setLoader] = useState(false);
@@ -96,11 +94,7 @@ const MoveDetails = () => {
                 </div>
               </InfoWrap>
             </FilmPageWrap>
-            <h3>Additional information</h3>
-            <AddInfoList>
-              <CastLink />
-              <ReviewsLink />
-            </AddInfoList>
+            <AdditInform />
             <Suspense>
               <Outlet />
             </Suspense>

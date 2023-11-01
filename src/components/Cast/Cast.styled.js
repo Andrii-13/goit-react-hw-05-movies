@@ -20,4 +20,5 @@ img{
 `
 export const ActorInfoWrap = styled.div`
 width: 150px;
+
 `

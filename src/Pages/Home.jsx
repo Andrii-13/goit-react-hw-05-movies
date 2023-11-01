@@ -32,7 +32,7 @@ const Home = () => {
     <main>
       <Section>
         <Container>
-          <h1 style={{ textAlign: 'center', color: 'gray' }}>
+          <h1 style={{marginTop: '40px', textAlign: 'center', color: 'gray' }}>
             Trending this week
           </h1>
           {loader && <Loader />}

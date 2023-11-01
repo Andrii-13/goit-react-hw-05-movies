@@ -56,7 +56,6 @@ const Reviews = () => {
                         : defaultPhoto
                     }
                     alt="author avatar"
-                    width={100}
                   ></img>
                 </div>
                 <div>
