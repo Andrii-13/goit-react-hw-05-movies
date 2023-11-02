@@ -1,7 +1,7 @@
-import NotFound from '../Pages/NotFound/NotFound';
+// import NotFound from '../Pages/NotFound/NotFound';
 
 import { lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Layout from './Layout/layout';
 
 const Home = lazy(() => import('../Pages/Home'));
@@ -20,7 +20,7 @@ export const App = () => {
           <Route path="cast" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        <Route path="*" element={<NotFound />} />
+        <Route path="*" element={<Navigate to={'/'} />} />
       </Route>
     </Routes>
   );
